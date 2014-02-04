@@ -20,8 +20,8 @@ info "pyrocms | Fetch"
 git fetch pyrocms 2.2/develop
 success
 
-info "pyrocms | Add subtree"
-git subtree pull --prefix www/dev/2.2 pyrocms/2.2/develop --squash
+info "pyrocms | Pull subtree"
+git subtree pull --prefix www/dev/2.2 pyrocms 2.2/develop --squash
 success
 
 #### Contributing back to upstream
@@ -51,7 +51,7 @@ info "pyrocms-streams | Fetch"
 git fetch pyrocms-streams master
 success
 
-info "pyrocms-streams | Add subtree"
+info "pyrocms-streams | Pull subtree"
 git subtree pull --prefix www/dev/2.2/addons/shared_addons/libraries/streams pyrocms-streams master --squash
 success
 
@@ -59,6 +59,7 @@ success
 
 info "pyrocms-streams | Push subtree to upstream"
 git subtree push --prefix=www/dev/2.2/addons/shared_addons/modules/logs pyrocms-logs master
+success
 
 
 ### pyrocms-logs
@@ -77,7 +78,7 @@ info "pyrocms-logs | Fetch"
 git fetch pyrocms-logs master
 success
 
-info "pyrocms-logs | Add subtree"
+info "pyrocms-logs | Pull subtree"
 git subtree pull --prefix www/dev/2.2/addons/shared_addons/modules/logs pyrocms-logs master --squash
 success
 
@@ -103,7 +104,7 @@ info "pyrocms-bootstrap | Fetch"
 git fetch pyrocms-bootstrap master
 success
 
-info "pyrocms-bootstrap | Add subtree"
+info "pyrocms-bootstrap | Pull subtree"
 git subtree pull --prefix www/dev/2.2/addons/shared_addons/themes/bootstrap pyrocms-bootstrap master --squash
 success
 
