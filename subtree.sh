@@ -86,3 +86,29 @@ success
 info "pyrocms-logs | Push subtree to upstream"
 git subtree push --prefix=www/dev/2.2/addons/shared_addons/modules/logs pyrocms-logs master
 success
+
+### pyrocms-bootstrap
+
+#### Adding subtree
+
+info "pyrocms-bootstrap | Add remote"
+git remote add -f pyrocms-bootstrap git@github.com:LorenzoGarcia/pyrocms-bootstrap.git
+success
+
+info "pyrocms-bootstrap | Add subtree"
+git subtree add --prefix www/dev/2.2/addons/shared_addons/themes/bootstrap pyrocms-bootstrap master --squash
+success
+
+info "pyrocms-bootstrap | Fetch"
+git fetch pyrocms-bootstrap master
+success
+
+info "pyrocms-bootstrap | Add subtree"
+git subtree pull --prefix www/dev/2.2/addons/shared_addons/themes/bootstrap pyrocms-bootstrap master --squash
+success
+
+#### Contributing back to upstream
+
+info "pyrocms-bootstrap | Push subtree to upstream"
+git subtree push --prefix=www/dev/2.2/addons/shared_addons/themes/bootstrap pyrocms-bootstrap master
+success
