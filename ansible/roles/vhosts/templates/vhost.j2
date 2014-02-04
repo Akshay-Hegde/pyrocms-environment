@@ -1,0 +1,6 @@
+<VirtualHost *:80>
+	DocumentRoot /var/www/dev/{{ item.version }}
+	ServerName {{ item.name }}-{{ item.version }}.local
+</VirtualHost>
+
+# End of file roles/vhosts/templates/vhost.j2
