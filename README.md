@@ -6,61 +6,19 @@ sudo chmod +x /usr/share/doc/git/contrib/subtree/git-subtree.sh
 
 sudo ln -s /usr/share/doc/git/contrib/subtree/git-subtree.sh /usr/lib/git-core/git-subtree
 
-## Remotes
+## Grab the Virtual Machine
 
-### pyrocms
+git remote add -f pyrocms-vm git@github.com:LorenzoGarcia/pyrocms-vm.git
 
-#### Adding remotes
+git subtree add --prefix vm pyrocms-vm master --squash
 
-git remote add -f pyrocms git@github.com:pyrocms/pyrocms.git
+git fetch pyrocms-vm master
 
-git subtree add --prefix www/dev/2.2 pyrocms/2.2/develop --squash
+git subtree pull --prefix vm pyrocms-vm master --squash
 
-git fetch pyrocms 2.2/develop
-
-git subtree pull --prefix www/dev/2.2 pyrocms/2.2/develop --squash
-
-#### Contributing back to upstream
-
-git remote add pyrocms-upstream git@github.com:LorenzoGarcia/pyrocms.git
-
-git subtree push --prefix=www/dev/2.2/ pyrocms 2.2/develop
+git subtree push --prefix=vm pyrocms-vm master
 
 
-### pyrocms-streams
-
-#### Adding remotes
-
-git remote add -f pyrocms-streams git@github.com:LorenzoGarcia/pyrocms-streams.git
-
-git subtree add --prefix www/dev/2.2/addons/shared_addons/libraries/streams pyrocms-streams master --squash
-
-git fetch pyrocms-streams master
-
-git subtree pull --prefix www/dev/2.2/addons/shared_addons/libraries/streams pyrocms-streams master --squash
-
-#### Contributing back to upstream
-
-git subtree push --prefix=www/dev/2.2/addons/shared_addons/libraries/streams pyrocms-streams master
-
-
-### pyrocms-logs
-
-#### Adding remotes
-
-git remote add -f pyrocms-logs git@github.com:LorenzoGarcia/pyrocms-logs.git
-
-git subtree add --prefix www/dev/2.2/addons/shared_addons/modules/logs pyrocms-logs master --squash
-
-git fetch pyrocms-logs master
-
-git subtree pull --prefix www/dev/2.2/addons/shared_addons/modules/logs pyrocms-logs master --squash
-
-#### Contributing back to upstream
-
-git subtree push --prefix=www/dev/2.2/addons/shared_addons/modules/logs pyrocms-logs master
-
-
-## VM
+## Setup the Virtual Machine
 
 set pyrocms-environment/ansible/group_vars/all
