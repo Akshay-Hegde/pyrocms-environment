@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ lang:code }}">
+<head>
+    {{ theme:partial name='metadata' }}
+</head>
+
+<body>
+    <div id="wrap">
+
+        <div class="container">
+            <div class="row">
+
+                <header>
+                    {{ theme:partial name='header' }}
+                </header>
+
+                {{ if session:messages }}
+                <div class="row">
+                    {{ session:messages success="alert alert-success" notice="alert alert-info" error="alert alert-error" }}
+                </div>
+                {{ endif }}
+
+                <div class="row">
+                    <div class="col-md-8">
+                        {{ template:body }}
+                    </div>
+                    <div class="col-md-3 col-md-offset-1">
+                        {{ theme:partial name='sidebar' }}
+                    </div>
+                </div>
+
+            </div><!--/.row-->
+        </div><!--/.container-->
+
+    </div><!--/#wrap-->
+
+    <footer>
+        {{ theme:partial name='footer' }}
+    </footer>
+
+    {{ theme:partial name='scripts' }}
+
+</body>
+</html>

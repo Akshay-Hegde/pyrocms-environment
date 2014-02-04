@@ -1,0 +1,8 @@
+<div class="row">
+	<h3>{{ theme:lang lang="theme" line="global:label:headlines" default="Headlines" }}</h3>
+	<ul class="list-unstyled">
+		{{ blog:posts limit="3" }}
+		<li><a href="{{ url }}">{{ title }}</a></li>
+		{{ /blog:posts }}
+	</ul>
+</div>
