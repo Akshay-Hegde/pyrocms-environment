@@ -19,6 +19,8 @@ addons/*
 !addons/shared_addons
 addons/shared_addons/*
 
+!addons/shared_addons/config
+
 !addons/shared_addons/helpers
 addons/shared_addons/helpers/*
 !addons/shared_addons/helpers/index.html

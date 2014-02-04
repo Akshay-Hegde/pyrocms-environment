@@ -57,4 +57,8 @@ $route['edit-profile']	                    = 'users/edit';
 
 $route['sitemap.xml']                       = 'sitemap/xml';
 
+$path = ADDON_FOLDER.'shared_addons/config/routes.php';
+if(file_exists($path))
+	include ($path);
+
 /* End of file routes.php */
