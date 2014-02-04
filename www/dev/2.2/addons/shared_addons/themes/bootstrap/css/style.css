@@ -1,0 +1,140 @@
+/* theme
+-------------------------------------------------- */
+
+body {
+    background: #EEEEEE;
+    -webkit-font-smoothing: antialiased;
+    font-family: Baskerville, "Baskerville Old Face", "Goudy Old Style", Garamond, "Times New Roman", serif;
+    color: #404040;
+}
+
+a,
+a:visited,
+a:active {
+    color: #000;
+    font-weight: bold;
+}
+a:hover {
+    color: #176C91;
+    text-decoration: none;
+}
+
+/* sticky footer
+-------------------------------------------------- */
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+footer {
+  height: 60px;
+}
+
+/* theme::header
+-------------------------------------------------- */
+header .nav {
+    padding-top: 3%;
+    font-size: 1.2em;
+}
+header .nav i {
+    font-size: 1.5em;
+}
+header .nav .current a,
+header .nav .current a:visited,
+header .nav .current a:active {
+    color: #176C91;
+}
+header nav.navbar {
+    background-color: inherit;
+    border: 0;
+}
+header nav.navbar .navbar-header .navbar-toggle {
+    float: none;
+}
+header #user-menu {
+    padding-top: 3%;
+}
+
+/* theme::footer
+-------------------------------------------------- */
+footer {
+    background-color: #222;
+    padding: 10px 0;
+    color: #999;
+}
+footer a,
+footer a:active,
+footer a:visited {
+    color: #CCC;
+}
+footer a:hover {
+    color: #176C91;
+    text-decoration: none;
+}
+footer .social-networks a {
+    opacity: 0.3;
+    margin: 10px;
+}
+footer .social-networks a:hover {
+    opacity: 1;
+    margin: 10px;
+}
+footer .brand {
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: right;
+    padding-top: 10px
+}
+
+/* module::blog/posts.php
+-------------------------------------------------- */
+#posts .post {
+    margin: 10px 0;
+}
+#posts .post img {
+    width: 300px;
+    height: 169px;
+}
+#posts .post .meta .title {
+    font-size: 1em;
+    padding-top: 5px;
+}
+
+/* module::blog/view.php
+-------------------------------------------------- */
+#post-entry h1 {
+    font-size: 2em;
+    margin: 0;
+    padding: 0;
+}
+#post-entry h2 {
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0;
+}
+#post-entry .meta .date-text {
+    font-size: 1em;
+}
+#post-entry .body {
+    margin: 20px 20px;
+}
+
+/* module::users/profile/view.php
+-------------------------------------------------- */
+#profile .avatar {
+    width: 100px;
+    height: 100px;
+}
+
+/* End of file style.css */

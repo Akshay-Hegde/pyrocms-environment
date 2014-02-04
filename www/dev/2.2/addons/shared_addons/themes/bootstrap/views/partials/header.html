@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-2 col-sm-3">
+        <a href="{{ url:site }}">{{ theme:image file="logo.jpg" alt=settings:site_slogan title=settings:site_slogan class="img-responsive" }}</a>
+    </div>
+
+    <div class="col-md-8 col-sm-7">
+        <nav class="navbar navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle center-block visible-xs btn-lg" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">{{ theme:lang lang="theme" line="global:label:menu" default="Menu" }}
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    {{ navigation:links group="header" }}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </div>
+
+    <div class="col-md-2 col-sm-2" id="user-menu">
+    {{ if user:logged_in }}
+        <ul class="list-unstyled">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user:display_name }}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url:site }}{{ theme:lang lang='theme' line='global:slug:edit_profile' default='edit-profile' }}">{{ theme:lang lang="theme" line="global:label:edit_profile" default="Edit Profile" }}</a></li>
+                    {{ if { user:logged_in group="admin" } }}
+                    <li><a href="{{ url:site }}{{ theme:lang lang='theme' line='global:slug:admin' default='admin' }}">{{ theme:lang lang="theme" line="global:label:admin" default="Admin" }}</a></li>
+                    {{ endif }}
+                    <li class="divider"></li>
+                    <li><a href="{{ url:site }}{{ theme:lang lang='theme' line='global:slug:logout' default='logout' }}">{{ theme:lang lang="theme" line="global:label:logout" default="Logout" }}</a></li>
+                </ul>
+            </li>
+        </ul>
+    {{ else }}
+    <a href="{{ url:site }}{{ theme:lang lang='theme' line='global:slug:login' default='login' }}" class="btn btn-primary">{{ theme:lang lang="theme" line="global:label:login" default="Login" }}</a>
+    {{ endif }}
+
+    </div>
+</div>
