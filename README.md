@@ -9,7 +9,7 @@ sudo ln -s /usr/share/doc/git/contrib/subtree/git-subtree.sh /usr/lib/git-core/g
 
 ## Grab the Virtual Machine
 
-run pyrocms-vm.sh
+run vm/subtree/subtree.sh
 
 
 ## Setup the Virtual Machine
