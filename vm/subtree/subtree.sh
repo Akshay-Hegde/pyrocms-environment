@@ -1,142 +1,132 @@
 #!/bin/bash
 
+clear
 MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 source $MY_DIR/template.sh
 
+function pyrocms-vm {
+	info "pyrocms-vm | Add remote"
+	git remote add -f pyrocms-vm git@github.com:LorenzoGarcia/pyrocms-vm.git
+	info "pyrocms-vm | Add subtree"
+	git subtree add --prefix vm pyrocms-vm master --squash
+	info "pyrocms-vm | Fetch"
+	git fetch pyrocms-vm master
+	info "pyrocms-vm | Pull subtree"
+	git subtree pull --prefix vm pyrocms-vm master --squash
+	info "pyrocms-vm | Push subtree to upstream"
+	git subtree push --prefix=vm pyrocms-vm master
 
-### pyrocms-vm
+	success
+}
 
-#### Adding subtree
+function pyrocms {
+	info "pyrocms | Add remote"
+	git remote add -f pyrocms git@github.com:pyrocms/pyrocms.git
+	info "pyrocms | Add subtree"
+	git subtree add --prefix www/dev/2.2 pyrocms/2.2/develop --squash
+	info "pyrocms | Fetch"
+	git fetch pyrocms 2.2/develop
+	info "pyrocms | Pull subtree"
+	git subtree pull --prefix www/dev/2.2 pyrocms 2.2/develop --squash
 
-info "pyrocms-vm | Add remote"
-git remote add -f pyrocms-vm git@github.com:LorenzoGarcia/pyrocms-vm.git
-success
+	success
+}
 
-info "pyrocms-vm | Add subtree"
-git subtree add --prefix vm pyrocms-vm master --squash
-success
+function pyrocms-database {
+	info "pyrocms | Add remote"
+	git remote add -f pyrocms-database git@github.com:adamfairholm/PyroDatabase.git
+	info "pyrocms | Add subtree"
+	git subtree add --prefix www/dev/2.2/addons/shared_addons/modules/database pyrocms-database master --squash
+	info "pyrocms | Fetch"
+	git fetch pyrocms-database master
+	info "pyrocms | Pull subtree"
+	git subtree pull --prefix www/dev/2.2/addons/shared_addons/modules/database pyrocms-database master --squash
 
-info "pyrocms-vm | Fetch"
-git fetch pyrocms-vm master
-success
+	success
+}
 
-info "pyrocms-vm | Pull subtree"
-git subtree pull --prefix vm pyrocms-vm master --squash
-success
+function addons {
+	info "$2 | Add remote"
+	git remote add -f $2 git@github.com:LorenzoGarcia/$2.git
+	info "$2 | Add subtree"
+	git subtree add --prefix www/dev/2.2/addons/shared_addons/$1 $2 $3 --squash
+	info "$2 | Fetch"
+	git fetch $2 $3
+	info "$2 | Pull subtree"
+	git subtree pull --prefix www/dev/2.2/addons/shared_addons/$1 $2 $3 --squash
+	info "$2 | Push subtree to upstream"
+	git subtree push --prefix=www/dev/2.2/addons/shared_addons/$1 $2 $3
 
-#### Contributing back to upstream
+	success
+}
 
-info "pyrocms-vm | Push subtree to upstream"
-git subtree push --prefix=vm pyrocms-vm master
-success
+PS3='Please enter your choice: '
+options=(
+	"ALL"
+	"pyrocms-vm"
+	"pyrocms"
+	"pyrocms-streams"
+	"pyrocms-database"
+	"pyrocms-faq"
+	"pyrocms-logs"
+	"pyrocms-robots"
+	"pyrocms-bootstrap"
+	"Quit"
+	)
+select opt in "${options[@]}"
+do
+    case $opt in
+        "ALL")
+			pyrocms-vm
+			pyrocms
 
-### pyrocms
+			addons libraries/streams pyrocms-streams master
 
-#### Adding subtree
+			pyrocms-database
 
-info "pyrocms | Add remote"
-git remote add -f pyrocms git@github.com:pyrocms/pyrocms.git
-success
+			addons modules/faq pyrocms-faq master
+			addons modules/logs pyrocms-logs master
+			addons modules/robots pyrocms-robots master
 
-info "pyrocms | Add subtree"
-git subtree add --prefix www/dev/2.2 pyrocms/2.2/develop --squash
-success
-
-info "pyrocms | Fetch"
-git fetch pyrocms 2.2/develop
-success
-
-info "pyrocms | Pull subtree"
-git subtree pull --prefix www/dev/2.2 pyrocms 2.2/develop --squash
-success
-
-#### Contributing back to upstream
-
-info "pyrocms | Add upstream"
-git remote add pyrocms-upstream git@github.com:LorenzoGarcia/pyrocms.git
-success
-
-info "pyrocms | Push subtree to upstream"
-git subtree push --prefix=www/dev/2.2/ pyrocms-upstream 2.2/develop
-success
-
-
-### pyrocms-streams
-
-#### Adding subtree
-
-info "pyrocms-streams | Add remote"
-git remote add -f pyrocms-streams git@github.com:LorenzoGarcia/pyrocms-streams.git
-success
-
-info "pyrocms-streams | Add subtree"
-git subtree add --prefix www/dev/2.2/addons/shared_addons/libraries/streams pyrocms-streams master --squash
-success
-
-info "pyrocms-streams | Fetch"
-git fetch pyrocms-streams master
-success
-
-info "pyrocms-streams | Pull subtree"
-git subtree pull --prefix www/dev/2.2/addons/shared_addons/libraries/streams pyrocms-streams master --squash
-success
-
-#### Contributing back to upstream
-
-info "pyrocms-streams | Push subtree to upstream"
-git subtree push --prefix=www/dev/2.2/addons/shared_addons/modules/streams pyrocms-streams master
-success
-
-
-### pyrocms-logs
-
-#### Adding subtree
-
-info "pyrocms-logs | Add remote"
-git remote add -f pyrocms-logs git@github.com:LorenzoGarcia/pyrocms-logs.git
-success
-
-info "pyrocms-logs | Add subtree"
-git subtree add --prefix www/dev/2.2/addons/shared_addons/modules/logs pyrocms-logs master --squash
-success
-
-info "pyrocms-logs | Fetch"
-git fetch pyrocms-logs master
-success
-
-info "pyrocms-logs | Pull subtree"
-git subtree pull --prefix www/dev/2.2/addons/shared_addons/modules/logs pyrocms-logs master --squash
-success
-
-#### Contributing back to upstream
-
-info "pyrocms-logs | Push subtree to upstream"
-git subtree push --prefix=www/dev/2.2/addons/shared_addons/modules/logs pyrocms-logs master
-success
-
-### pyrocms-bootstrap
-
-#### Adding subtree
-
-info "pyrocms-bootstrap | Add remote"
-git remote add -f pyrocms-bootstrap git@github.com:LorenzoGarcia/pyrocms-bootstrap.git
-success
-
-info "pyrocms-bootstrap | Add subtree"
-git subtree add --prefix www/dev/2.2/addons/shared_addons/themes/bootstrap pyrocms-bootstrap master --squash
-success
-
-info "pyrocms-bootstrap | Fetch"
-git fetch pyrocms-bootstrap master
-success
-
-info "pyrocms-bootstrap | Pull subtree"
-git subtree pull --prefix www/dev/2.2/addons/shared_addons/themes/bootstrap pyrocms-bootstrap master --squash
-success
-
-#### Contributing back to upstream
-
-info "pyrocms-bootstrap | Push subtree to upstream"
-git subtree push --prefix=www/dev/2.2/addons/shared_addons/themes/bootstrap pyrocms-bootstrap master
-success
+			addons themes/bootstrap pyrocms-bootstrap master
+			break
+            ;;
+        "pyrocms-vm")
+			pyrocms-vm
+			break
+            ;;
+        "pyrocms")
+			pyrocms
+			break
+            ;;
+        "pyrocms-streams")
+			addons libraries/streams pyrocms-streams master
+			break
+            ;;
+        "pyrocms-database")
+			pyrocms-database
+			break
+            ;;
+        "pyrocms-faq")
+			addons modules/faq pyrocms-faq master
+			break
+            ;;
+        "pyrocms-logs")
+			addons modules/logs pyrocms-logs master
+			break
+            ;;
+        "pyrocms-robots")
+			addons modules/robots pyrocms-robots master
+			break
+            ;;
+        "pyrocms-bootstrap")
+			addons themes/bootstrap pyrocms-bootstrap master
+			break
+            ;;
+        "Quit")
+            break
+            ;;
+        *) echo invalid option;;
+    esac
+done
