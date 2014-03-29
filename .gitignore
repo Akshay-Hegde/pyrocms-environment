@@ -1,0 +1,5 @@
+# Vagrant
+.vagrant
+vagrant_ansible_inventory_default
+
+# End of file .gitignore
