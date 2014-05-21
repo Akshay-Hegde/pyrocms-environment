@@ -61,6 +61,19 @@ function addons {
 	success
 }
 
+function mediawiki {
+	info "mediawiki | Add remote"
+	git remote add -f mediawiki https://gerrit.wikimedia.org/r/p/mediawiki/core.git
+	info "mediawiki | Add subtree"
+	git subtree add --prefix www/dev/mediawiki mediawiki master --squash
+	info "mediawiki | Fetch"
+	git fetch mediawiki master
+	info "mediawiki | Pull subtree"
+	git subtree pull --prefix www/dev/mediawiki mediawiki master --squash
+
+	success
+}
+
 PS3='Please enter your choice: '
 options=(
 	"ALL"
@@ -72,6 +85,7 @@ options=(
 	"pyrocms-logs"
 	"pyrocms-robots"
 	"pyrocms-bootstrap"
+	"mediawiki"
 	"Quit"
 	)
 select opt in "${options[@]}"
@@ -90,6 +104,8 @@ do
 			addons modules/robots pyrocms-robots master
 
 			addons themes/bootstrap pyrocms-bootstrap master
+
+			mediawiki
 			break
             ;;
         "pyrocms-vm")
@@ -122,6 +138,10 @@ do
             ;;
         "pyrocms-bootstrap")
 			addons themes/bootstrap pyrocms-bootstrap master
+			break
+            ;;
+        "mediawiki")
+			mediawiki
 			break
             ;;
         "Quit")
